@@ -1,10 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-  <title>Teera</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEERA</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f6f1fb;
+  color:#4a1768;
+}
+header{
+  background:#6A1B9A;
+  color:white;
+  padding:30px 20px;
+  text-align:center;
+  position:relative;
+}
+.lang-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:white;
+  color:#6A1B9A;
+  border:none;
+  padding:8px 12px;
+  cursor:pointer;
+  border-radius:4px;
+}
+section{
+  padding:40px 20px;
+  max-width:1000px;
+  margin:auto;
+}
+.hero{
+  text-align:center;
+}
+.hero h1{
+  font-size:42px;
+}
+.hero p{
+  font-size:18px;
+}
+.btn{
+  background:#6A1B9A;
+  color:white;
+  padding:12px 20px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:15px;
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+}
+.card img{
+  width:100%;
+  border-radius:8px;
+}
+footer{
+  background:#eee;
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Teera</h1>
-  <p>Buy Now Pay Later</p>
+
+<header>
+  <button class="lang-btn" onclick="toggleLang()">AR / EN</button>
+  <h1 id="title">TEERA</h1>
+  <p id="tagline">اشترِ الآن وادفع لاحقًا</p>
+</header>
+
+<section class="hero">
+  <h1 id="heroTitle">حل تقسيط ذكي داخل السعودية</h1>
+  <p id="heroDesc">
+    TEERA هو تطبيق سعودي يتيح لك الشراء من جميع المتاجر والدفع لاحقًا بسهولة وأمان.
+  </p>
+  <button class="btn" onclick="alertComing()">
+    قريبًا – سجّل اهتمامك
+  </button>
+</section>
+
+<section>
+  <h2 id="howTitle">كيف يعمل TEERA؟</h2>
+  <div class="cards">
+    <div class="card">
+      <h3 id="step1">سجّل حسابك</h3>
+      <p id="step1Desc">أنشئ حسابك خلال دقائق باستخدام هويتك.</p>
+    </div>
+    <div class="card">
+      <h3 id="step2">اشترِ من أي متجر</h3>
+      <p id="step2Desc">استخدم TEERA في المطاعم، المتاجر، والخدمات.</p>
+    </div>
+    <div class="card">
+      <h3 id="step3">ادفع لاحقًا</h3>
+      <p id="step3Desc">قسّط المبلغ على دفعات مريحة.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>TEERA App</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f">
+      <p id="img1">تجربة دفع سهلة وآمنة</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1556742049-908c2c7289b3">
+      <p id="img2">متوافق مع جميع أنواع المتاجر</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    support@teerapay.com | +966546350712 | X: @teerainfo
+  </p>
+</footer>
+
+<script>
+let lang = "ar";
+
+const content = {
+  ar:{
+    tagline:"اشترِ الآن وادفع لاحقًا",
+    heroTitle:"حل تقسيط ذكي داخل السعودية",
+    heroDesc:"TEERA هو تطبيق سعودي يتيح لك الشراء من جميع المتاجر والدفع لاحقًا بسهولة وأمان.",
+    howTitle:"كيف يعمل TEERA؟",
+    step1:"سجّل حسابك",
+    step1Desc:"أنشئ حسابك خلال دقائق باستخدام هويتك.",
+    step2:"اشترِ من أي متجر",
+    step2Desc:"استخدم TEERA في المطاعم، المتاجر، والخدمات.",
+    step3:"ادفع لاحقًا",
+    step3Desc:"قسّط المبلغ على دفعات مريحة.",
+    img1:"تجربة دفع سهلة وآمنة",
+    img2:"متوافق مع جميع أنواع المتاجر"
+  },
+  en:{
+    tagline:"Buy Now, Pay Later",
+    heroTitle:"Smart Installment Solution in Saudi Arabia",
+    heroDesc:"TEERA is a Saudi BNPL app that lets you shop anywhere and pay later easily and securely.",
+    howTitle:"How TEERA Works",
+    step1:"Create Account",
+    step1Desc:"Sign up in minutes using your ID.",
+    step2:"Shop Anywhere",
+    step2Desc:"Use TEERA in stores, restaurants, and services.",
+    step3:"Pay Later",
+    step3Desc:"Split your payment into easy installments.",
+    img1:"Easy and secure payments",
+    img2:"Works with all merchants"
+  }
+};
+
+function toggleLang(){
+  lang = lang === "ar" ? "en" : "ar";
+  applyLang();
+}
+
+function applyLang(){
+  tagline.innerText = content[lang].tagline;
+  heroTitle.innerText = content[lang].heroTitle;
+  heroDesc.innerText = content[lang].heroDesc;
+  howTitle.innerText = content[lang].howTitle;
+  step1.innerText = content[lang].step1;
+  step1Desc.innerText = content[lang].step1Desc;
+  step2.innerText = content[lang].step2;
+  step2Desc.innerText = content[lang].step2Desc;
+  step3.innerText = content[lang].step3;
+  step3Desc.innerText = content[lang].step3Desc;
+  img1.innerText = content[lang].img1;
+  img2.innerText = content[lang].img2;
+}
+
+function alertComing(){
+  alert(lang === "ar" ? "قريبًا بإذن الله 🚀" : "Coming soon 🚀");
+}
+</script>
+
 </body>
 </html>
