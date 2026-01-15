@@ -10,18 +10,17 @@
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  background:#f5f0fa;
+  background:#f6f1fb;
   color:#3b0a57;
-  overflow-x:hidden;
 }
 .hidden{display:none}
 
-/* ===== Animations ===== */
+/* Animations */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{transform:translateY(40px)}to{transform:translateY(0)}}
-@keyframes scaleIn{from{transform:scale(.9)}to{transform:scale(1)}}
+@keyframes slideUp{from{transform:translateY(30px)}to{transform:translateY(0)}}
+@keyframes scaleIn{from{transform:scale(.8)}to{transform:scale(1)}}
 
-/* ===== Buttons ===== */
+/* Buttons */
 .btn{
   background:#6A1B9A;
   color:white;
@@ -32,9 +31,9 @@ body{
   cursor:pointer;
   transition:.3s;
 }
-.btn:hover{transform:scale(1.05);background:#7c2db1}
+.btn:hover{background:#7c2db1;transform:scale(1.05)}
 
-/* ===== Splash ===== */
+/* Splash */
 #splash{
   position:fixed;
   inset:0;
@@ -44,22 +43,64 @@ body{
   justify-content:center;
   align-items:center;
   color:white;
-  animation:fadeIn 1s;
   z-index:10;
+  animation:fadeIn 1s;
 }
 #splash img{
-  width:120px;
+  width:140px;
   margin-bottom:20px;
   animation:scaleIn 1.2s;
 }
-#splash h1{font-size:42px}
 
-/* ===== Sections ===== */
+/* Header */
+header{
+  background:#6A1B9A;
+  color:white;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.lang{
+  background:white;
+  color:#6A1B9A;
+  border:none;
+  padding:6px 12px;
+  cursor:pointer;
+}
+
+/* Sections */
 section{
   padding:50px 20px;
   max-width:1100px;
   margin:auto;
-  animation:fadeIn 1s;
+  animation:fadeIn .8s;
+}
+.hero-img{
+  width:100%;
+  border-radius:16px;
+  margin:30px 0;
+}
+
+/* Login */
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+/* Dashboard */
+nav{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:30px;
+}
+nav .btn{
+  flex:1;
+  min-width:140px;
 }
 .cards{
   display:grid;
@@ -70,48 +111,7 @@ section{
   background:white;
   padding:25px;
   border-radius:12px;
-  transition:.3s;
-  animation:slideUp .8s;
-}
-.card:hover{transform:translateY(-8px)}
-
-/* ===== Header ===== */
-header{
-  background:#6A1B9A;
-  color:white;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.lang{background:white;color:#6A1B9A;padding:6px 12px;border:none}
-
-/* ===== Login ===== */
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
-
-/* ===== Dashboard ===== */
-nav{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
-}
-nav button{
-  flex:1;
-  min-width:140px;
-}
-
-/* ===== Images ===== */
-img.hero{
-  width:100%;
-  border-radius:16px;
-  margin:30px 0;
+  animation:slideUp .6s;
 }
 </style>
 </head>
@@ -120,25 +120,26 @@ img.hero{
 
 <!-- SPLASH -->
 <div id="splash">
-  <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f">
+  <img src="https://images.unsplash.com/photo-1605902711622-cfb43c44367f?auto=format&fit=crop&w=400&q=80">
   <h1>TEERA</h1>
-  <p>Buy Now, Pay Later</p>
+  <p id="sloganSplash">قسط كل شيء على راحتك</p>
 </div>
 
 <!-- HEADER -->
-<header class="hidden" id="top">
+<header id="top" class="hidden">
   <h2>TEERA</h2>
   <button class="lang" onclick="toggleLang()">AR / EN</button>
 </header>
 
 <!-- LANDING -->
 <section id="landing" class="hidden">
-  <h1 id="lTitle">اشترِ الآن وادفع لاحقًا</h1>
-  <p id="lDesc">
-    تطبيق سعودي ذكي للتقسيط يعمل في جميع المتاجر والخدمات.
+  <h1 id="landingTitle">قسط كل شيء على راحتك</h1>
+  <p id="landingDesc">
+    تطبيق سعودي ذكي يتيح لك الشراء من أي مكان والدفع بالتقسيط بكل سهولة.
   </p>
-  <img class="hero" src="https://images.unsplash.com/photo-1556742049-908c2c7289b3">
-  <button class="btn" onclick="showLogin()">ابدأ الآن</button>
+  <img class="hero-img"
+       src="https://images.unsplash.com/photo-1556742049-908c2c7289b3?auto=format&fit=crop&w=1000&q=80">
+  <button class="btn" onclick="goLogin()">ابدأ الآن</button>
 </section>
 
 <!-- LOGIN -->
@@ -146,7 +147,7 @@ img.hero{
   <h2 id="loginTitle">تسجيل الدخول</h2>
   <input placeholder="البريد الإلكتروني">
   <input type="password" placeholder="كلمة المرور">
-  <button class="btn" onclick="enterApp()">دخول</button>
+  <button class="btn" onclick="goDashboard()">دخول</button>
 </section>
 
 <!-- DASHBOARD -->
@@ -162,15 +163,15 @@ img.hero{
 
   <div class="cards">
     <div class="card">
-      <h3>الحد الائتماني</h3>
+      <h3 id="limitTitle">الحد الائتماني</h3>
       <p>4,000 SAR</p>
     </div>
     <div class="card">
-      <h3>الأقساط النشطة</h3>
+      <h3 id="instTitle">الأقساط النشطة</h3>
       <p>2 عمليات</p>
     </div>
     <div class="card">
-      <h3>آخر عملية</h3>
+      <h3 id="lastTitle">آخر عملية</h3>
       <p>مطعم – 250 SAR</p>
     </div>
   </div>
@@ -179,37 +180,51 @@ img.hero{
 <script>
 let lang="ar";
 
-const text={
-ar:{
-lTitle:"اشترِ الآن وادفع لاحقًا",
-lDesc:"تطبيق سعودي ذكي للتقسيط يعمل في جميع المتاجر والخدمات.",
-loginTitle:"تسجيل الدخول",
-dashTitle:"لوحة التحكم"
-},
-en:{
-lTitle:"Buy Now, Pay Later",
-lDesc:"A smart Saudi BNPL app that works everywhere.",
-loginTitle:"Login",
-dashTitle:"Dashboard"
-}
+const TEXT={
+  ar:{
+    slogan:"قسط كل شيء على راحتك",
+    landingTitle:"قسط كل شيء على راحتك",
+    landingDesc:"تطبيق سعودي ذكي يتيح لك الشراء من أي مكان والدفع بالتقسيط بكل سهولة.",
+    loginTitle:"تسجيل الدخول",
+    dashTitle:"لوحة التحكم",
+    limitTitle:"الحد الائتماني",
+    instTitle:"الأقساط النشطة",
+    lastTitle:"آخر عملية"
+  },
+  en:{
+    slogan:"Install everything at your pace",
+    landingTitle:"Install everything at your pace",
+    landingDesc:"A smart Saudi app that lets you shop anywhere and pay in easy installments.",
+    loginTitle:"Login",
+    dashTitle:"Dashboard",
+    limitTitle:"Credit Limit",
+    instTitle:"Active Installments",
+    lastTitle:"Last Transaction"
+  }
 };
 
 function toggleLang(){
-  lang=lang==="ar"?"en":"ar";
+  lang = lang==="ar" ? "en" : "ar";
   applyLang();
 }
+
 function applyLang(){
-  lTitle.innerText=text[lang].lTitle;
-  lDesc.innerText=text[lang].lDesc;
-  loginTitle.innerText=text[lang].loginTitle;
-  dashTitle.innerText=text[lang].dashTitle;
+  sloganSplash.innerText = TEXT[lang].slogan;
+  landingTitle.innerText = TEXT[lang].landingTitle;
+  landingDesc.innerText = TEXT[lang].landingDesc;
+  loginTitle.innerText = TEXT[lang].loginTitle;
+  dashTitle.innerText = TEXT[lang].dashTitle;
+  limitTitle.innerText = TEXT[lang].limitTitle;
+  instTitle.innerText = TEXT[lang].instTitle;
+  lastTitle.innerText = TEXT[lang].lastTitle;
 }
 
-function showLogin(){
+function goLogin(){
   landing.classList.add("hidden");
   login.classList.remove("hidden");
 }
-function enterApp(){
+
+function goDashboard(){
   login.classList.add("hidden");
   dashboard.classList.remove("hidden");
 }
