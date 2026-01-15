@@ -1,190 +1,171 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEERA</title>
+  <meta charset="UTF-8" />
+  <title>Teera – Flexible Payments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f5f0fa;
-  color:#3b0a57;
-}
-.hidden{display:none}
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fafafa;
+      color: #1f1f1f;
+      transition: all 0.3s ease;
+    }
 
-/* Animations */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{transform:translateY(30px)}to{transform:translateY(0)}}
+    header {
+      padding: 24px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-/* Buttons */
-.btn{
-  background:#6A1B9A;
-  color:white;
-  border:none;
-  padding:14px 22px;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-  transition:.3s;
-}
-.btn:hover{background:#7c2db1}
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: #6a4df4;
+    }
 
-/* Header */
-header{
-  background:#6A1B9A;
-  color:white;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .lang-btn {
+      border: none;
+      background: #eee;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
 
-/* Sections */
-section{
-  padding:50px 20px;
-  max-width:1000px;
-  margin:auto;
-  animation:fadeIn .6s;
-}
+    .hero {
+      padding: 100px 20px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
 
-/* Login */
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
-}
+    .hero h1 {
+      font-size: 46px;
+      margin-bottom: 16px;
+    }
 
-/* Dashboard */
-nav{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
-}
-nav .btn{
-  flex:1;
-  min-width:140px;
-}
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-}
-.card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  animation:slideUp .5s;
-}
-</style>
+    .hero p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 32px;
+    }
+
+    .cta {
+      background: #6a4df4;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <h2>TEERA</h2>
-  <button class="btn" onclick="toggleLang()">AR / EN</button>
+  <div class="logo">Teera</div>
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
 </header>
 
-<!-- LANDING -->
-<section id="landing">
-  <h1 id="title">قسط كل شيء على راحتك</h1>
-  <p id="desc">
-    تطبيق مالي سعودي يتيح لك الشراء من أي متجر والدفع لاحقًا بالتقسيط بكل سهولة.
+<div class="hero">
+  <h1 id="title">تسوّق الآن وادفع لاحقًا</h1>
+  <p id="subtitle">
+    Teera يمنحك مرونة في الدفع وتجربة آمنة في مختلف المتاجر داخل المملكة.
   </p>
-  <button class="btn" onclick="goLogin()">ابدأ الآن</button>
-</section>
+  <button class="cta" id="cta">ابدأ الآن</button>
+</div>
 
-<!-- LOGIN -->
-<section id="login" class="hidden">
-  <h2 id="loginTitle">تسجيل الدخول</h2>
-  <input placeholder="البريد الإلكتروني">
-  <input type="password" placeholder="كلمة المرور">
-  <button class="btn" onclick="goDashboard()">دخول</button>
-</section>
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="hidden">
-  <h2 id="dashTitle">لوحة التحكم</h2>
-
-  <nav>
-    <button class="btn">المحفظة</button>
-    <button class="btn">الأقساط</button>
-    <button class="btn">الدفع QR</button>
-    <button class="btn">الدعم</button>
-  </nav>
-
-  <div class="cards">
-    <div class="card">
-      <h3 id="limitTitle">الحد الائتماني</h3>
-      <p>4,000 SAR</p>
-    </div>
-    <div class="card">
-      <h3 id="instTitle">الأقساط النشطة</h3>
-      <p>2 عمليات</p>
-    </div>
-    <div class="card">
-      <h3 id="lastTitle">آخر عملية</h3>
-      <p>مطعم – 250 SAR</p>
-    </div>
+<section>
+  <div class="grid">
+    <div class="card" id="f1">موافقة فورية بدون تعقيد</div>
+    <div class="card" id="f2">استخدمه في جميع الأنشطة التجارية</div>
+    <div class="card" id="f3">أمان عالي وتحكم كامل</div>
   </div>
 </section>
 
+<section>
+  <div class="grid">
+    <div class="card" id="s1">سجّل وتحقق خلال دقائق</div>
+    <div class="card" id="s2">ادفع بسهولة عبر المتاجر</div>
+    <div class="card" id="s3">سدّد على دفعات مريحة</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Teera · teerapay.com
+</footer>
+
 <script>
-let lang="ar";
+  let isArabic = true;
 
-const TEXT={
-  ar:{
-    title:"قسط كل شيء على راحتك",
-    desc:"تطبيق مالي سعودي يتيح لك الشراء من أي متجر والدفع لاحقًا بالتقسيط بكل سهولة.",
-    loginTitle:"تسجيل الدخول",
-    dashTitle:"لوحة التحكم",
-    limitTitle:"الحد الائتماني",
-    instTitle:"الأقساط النشطة",
-    lastTitle:"آخر عملية"
-  },
-  en:{
-    title:"Install everything at your pace",
-    desc:"A Saudi fintech app that lets you shop anywhere and pay later in easy installments.",
-    loginTitle:"Login",
-    dashTitle:"Dashboard",
-    limitTitle:"Credit Limit",
-    instTitle:"Active Installments",
-    lastTitle:"Last Transaction"
+  function toggleLang() {
+    isArabic = !isArabic;
+    document.documentElement.lang = isArabic ? "ar" : "en";
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
+
+    document.getElementById("title").innerText =
+      isArabic ? "تسوّق الآن وادفع لاحقًا" : "Shop now, pay later";
+
+    document.getElementById("subtitle").innerText =
+      isArabic
+        ? "Teera يمنحك مرونة في الدفع وتجربة آمنة في مختلف المتاجر داخل المملكة."
+        : "Teera gives you flexible and secure payments across Saudi Arabia.";
+
+    document.getElementById("cta").innerText =
+      isArabic ? "ابدأ الآن" : "Get Started";
+
+    document.getElementById("f1").innerText =
+      isArabic ? "موافقة فورية بدون تعقيد" : "Instant approval with no hassle";
+
+    document.getElementById("f2").innerText =
+      isArabic ? "استخدمه في جميع الأنشطة التجارية" : "Works across all merchant types";
+
+    document.getElementById("f3").innerText =
+      isArabic ? "أمان عالي وتحكم كامل" : "High security and full control";
+
+    document.getElementById("s1").innerText =
+      isArabic ? "سجّل وتحقق خلال دقائق" : "Sign up and verify in minutes";
+
+    document.getElementById("s2").innerText =
+      isArabic ? "ادفع بسهولة عبر المتاجر" : "Pay easily in stores";
+
+    document.getElementById("s3").innerText =
+      isArabic ? "سدّد على دفعات مريحة" : "Pay in comfortable installments";
+
+    document.querySelector(".lang-btn").innerText = isArabic ? "EN" : "AR";
   }
-};
-
-function toggleLang(){
-  lang = lang==="ar" ? "en" : "ar";
-  applyLang();
-}
-
-function applyLang(){
-  document.getElementById("title").innerText = TEXT[lang].title;
-  document.getElementById("desc").innerText = TEXT[lang].desc;
-  document.getElementById("loginTitle").innerText = TEXT[lang].loginTitle;
-  document.getElementById("dashTitle").innerText = TEXT[lang].dashTitle;
-  document.getElementById("limitTitle").innerText = TEXT[lang].limitTitle;
-  document.getElementById("instTitle").innerText = TEXT[lang].instTitle;
-  document.getElementById("lastTitle").innerText = TEXT[lang].lastTitle;
-}
-
-function goLogin(){
-  document.getElementById("landing").classList.add("hidden");
-  document.getElementById("login").classList.remove("hidden");
-}
-
-function goDashboard(){
-  document.getElementById("login").classList.add("hidden");
-  document.getElementById("dashboard").classList.remove("hidden");
-}
-
-applyLang();
 </script>
 
 </body>
